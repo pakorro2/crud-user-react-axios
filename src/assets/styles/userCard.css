@@ -1,0 +1,84 @@
+.user {
+  background-color: whitesmoke;
+  border: 2px solid;
+  padding: 20px;
+  border: solid 1px rgb(98, 98, 98);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  transition: 250ms ease;
+}
+
+.user:hover {
+  box-shadow: 0 0 15px #0005;
+  transition: 250ms ease;
+  transform: scale(1.0);
+}
+
+.user__name {
+  font-weight: 500;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.user__list {
+  display: grid;
+  gap: 10px;
+}
+
+.user__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user__span {
+  color: darkgrey;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.user__item-container {
+  display: flex;
+  gap: 7px;
+}
+
+.user__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.user__btn {
+  width: 30px;
+  aspect-ratio: 1;
+  border-radius: 5px;
+  border: 1px solid #ccce;
+  margin-top: 10px;
+  cursor: url(https://img.icons8.com/stickers/32/000000/hand-cursor.png), auto;
+  transition: 200ms ease;
+}
+
+.user__btn:hover {
+  transform: scale(1.2);
+  transition: 200ms ease;
+}
+
+.user__btn:first-child {
+  color: white;
+  background-color: firebrick;
+}
+
+.user__btn:last-child {
+  color: black;
+  background-color: gainsboro;
+}
+
+@media (max-width: 480px) {
+
+  .user {
+    width: 90%;
+  }
+
+}
