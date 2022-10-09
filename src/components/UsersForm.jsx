@@ -26,6 +26,7 @@ const UsersForm = ({ createNewUsers, updateInfo, editUsersById, setUpdateInfo, s
   //spara crear un nuevo registro o editarlo
   //Si lo edita carga los datos de ese registro en el foormulario
   const submit = data => {
+
     if (updateInfo) {
       //Editar usuario
       editUsersById(updateInfo.id, data)
@@ -40,8 +41,8 @@ const UsersForm = ({ createNewUsers, updateInfo, editUsersById, setUpdateInfo, s
   // Funcion para cerrar formulario
   const handleCloseForm = () => {
     setCloseForm(true)
+    reset(defaulValues)
   }
-
   return (
     <form className='form' onSubmit={handleSubmit(submit)}>
       <i onClick={handleCloseForm} className="form__close fa-solid fa-circle-xmark"></i>

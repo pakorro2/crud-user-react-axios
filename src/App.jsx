@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { set } from 'react-hook-form'
 import './App.css'
 import UserCard from './components/UserCard'
 import UsersForm from './components/UsersForm'
+import Loading from './components/Loading'
 
 
 const baseURL = 'https://users-crud1.herokuapp.com'
@@ -15,12 +15,20 @@ function App() {
   const [updateInfo, setUpdateInfo] = useState()
   //Estado que sirve para guardar la clase que oculta el form 
   const [closeForm, setCloseForm] = useState(true)
+  //Estado para guardar el estado del loader
+  const [loading, setLoading] = useState(false)
+  //Estado que sirve para guardar los errores
+
 
   //Se obtinen todos los usuarios de la api (GET)
   const getAllUsers = () => {
     const URL = `${baseURL}/users/`
+    setLoading(true)
     axios.get(URL)
-      .then(res => setUsers(res.data))
+      .then(res => {
+        setUsers(res.data)
+        setLoading(false)
+      })
       .catch(err => console.log(err))
   }
 
@@ -37,6 +45,7 @@ function App() {
         console.log(res.data)
         // Actualiza la vista despue de crea el usuaio(getAllUsers)
         getAllUsers()
+
       })
       .catch(err => console.log(err))
   }
@@ -67,13 +76,14 @@ function App() {
 
   // Funcion para abrir formulario desde boton crear nuevo usuario
   const handleOpenForm = () => {
+    setUpdateInfo()
     setCloseForm(false)
   }
 
   return (
     <div className="App">
       <div className="app__container-ttbt">
-        <h1 className='App__title' >Users Crud</h1>
+        <h1 className="App__title" >Users Crud</h1>
         <button onClick={handleOpenForm} className='App__btn' >Create New User<i className="btn__add fa-solid fa-plus"></i></button>
       </div>
       <div className={`form__content ${closeForm && 'disable__form'}`}>
@@ -85,18 +95,18 @@ function App() {
           setCloseForm={setCloseForm}
         />
       </div >
-
       <div className="card__content">
         {
-          users?.map(user => (
-            <UserCard
-              key={user.id}
-              user={user}
-              deletedUserById={deletedUserById}
-              setUpdateInfo={setUpdateInfo}
-              setCloseForm={setCloseForm}
-            />
-          ))
+          loading ? <Loading /> :
+            users?.map(user => (
+              <UserCard
+                key={user.id}
+                user={user}
+                deletedUserById={deletedUserById}
+                setUpdateInfo={setUpdateInfo}
+                setCloseForm={setCloseForm}
+              />
+            ))
         }
       </div>
       <footer className='App__footer' ><p className='App__copywrite'>Creado con ❤ por Pako Cárdenas</p></footer>
