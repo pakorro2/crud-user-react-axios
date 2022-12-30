@@ -5,7 +5,7 @@ import UserCard from "./components/UserCard";
 import UsersForm from "./components/UsersForm";
 import Loading from "./components/Loading";
 
-const baseURL = "https://users-crud1.herokuapp.com";
+const baseURL = "https://api-users-sample.pakodev.site";
 
 function App() {
   //Estado para guardar la info del usuario
